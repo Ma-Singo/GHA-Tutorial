@@ -2,7 +2,7 @@ name: 02 - Workflow Events
 
 on:
   #push:
-  pull_request:
+  #pull_request:
   #schedule:
    # - cron: '*/5 * * * *'
   workflow_dispatch:
@@ -14,3 +14,4 @@ jobs:
       - name: Show the trigger
 
         run: echo "I've been triggered by a(n) ${{ github.event_name }} event."
+
