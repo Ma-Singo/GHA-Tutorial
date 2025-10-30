@@ -1,6 +1,5 @@
 name: 10 - Controlling Execution Workflow
 
-# run-name: ${{ inputs.pass-unit-tests }}
 
 on: 
     workflow_dispatch:
@@ -32,6 +31,7 @@ jobs:
             - unit-test
         steps:
             - name: Deploying to nonprod
+              if: ${{ failure() }}
               run: echo "Deploying to nonprod..."
 
     # Both e2e-tests and load-tests are dependent on deploy-nonprod --> both are non dependent to each other 
