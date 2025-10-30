@@ -18,6 +18,7 @@ jobs:
               run: echo "Linting and building project"
     unit-test:
         runs-on: ubuntu-latest
+        continue-on-error: true 
         steps:
             - name: Running Unit Tests
               run: echo "Running tests ..."
@@ -31,7 +32,6 @@ jobs:
             - unit-test
         steps:
             - name: Deploying to nonprod
-              if: ${{ !cancelled() }}
               run: echo "Deploying to nonprod..."
 
     # Both e2e-tests and load-tests are dependent on deploy-nonprod --> both are non dependent to each other 
