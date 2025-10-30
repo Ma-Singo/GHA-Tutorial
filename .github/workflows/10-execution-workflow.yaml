@@ -31,7 +31,7 @@ jobs:
             - unit-test
         steps:
             - name: Deploying to nonprod
-              if: ${{ failure() }}
+              if: ${{ !cancelled() }}
               run: echo "Deploying to nonprod..."
 
     # Both e2e-tests and load-tests are dependent on deploy-nonprod --> both are non dependent to each other 
