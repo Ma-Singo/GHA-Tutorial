@@ -6,7 +6,7 @@ on:
             - opened
             - synchronize
         branches:
-            - main
+            - talent
     workflow_dispatch:
 
 jobs:
