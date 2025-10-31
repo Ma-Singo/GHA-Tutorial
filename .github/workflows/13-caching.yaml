@@ -8,6 +8,15 @@ on:
                 description: Whether to execute cache setup
                 type: boolean
                 default: true
+            node-version:
+                description: Node version
+                type: choice 
+                options:
+                    - 18.x
+                    - 20.x
+                    - 21.x 
+                default: 20.x
+
         
 
 jobs:
@@ -16,6 +25,7 @@ jobs:
         defaults:
             run:
                 working-directory: 13-caching/react-app
+        
         steps:
             # 1. Checkout the code 
             -  name: Checkout the code
@@ -24,7 +34,7 @@ jobs:
             - name: Setting up node
               uses: actions/setup-node@v3
               with:
-                node-version: '20.x'
+                node-version: ${{ inputs.node-version }}
             
             # 2. Install dependencies
             - name: Install dependencies
