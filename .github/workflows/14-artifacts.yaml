@@ -1,0 +1,55 @@
+name: 14 - Working with Artifacts
+
+on:
+    workflow_dispatch:
+        inputs:
+            use-cache:
+                type: boolean
+                description: Whether to use cache or not
+                default: true
+            node-version:
+                description: Which version of node to use
+                type: choice 
+                options:
+                    - 18.x
+                    - 20.x
+                    - 22.x 
+                default: 20.x
+
+jobs:
+    build:
+        runs-on: ubuntu-latest
+        env: 
+            Working-directory: 14-artifacts/react-app
+        defaults:
+            run:
+                working-directory: ${{ env.Working-directory }}
+            
+        
+        steps:
+            - name: Checkout code
+              uses: actions/checkout@v4
+
+            - name: Setup Nod
+              uses: actions/setup-node@v3
+              with:
+                node-version: ${{ inputs.node-version }}
+            
+            - name: Download cached dependencies
+              id: cache
+              uses: actions/cache@v4
+              if: ${{ inputs.use-cache }}
+              with:
+                path: ${{ env.Working-directory }}/node_modules
+                key: deps-node-modules-${{ hashFiles('14-artifacts/react-app/package-lock.json') }}
+
+            - name: Install dependencies
+              run: npm ci
+
+    
+    deploy: 
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Echo test
+              run: echo "Echo command is a fun way of print stin to stdout"
