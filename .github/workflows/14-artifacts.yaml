@@ -44,12 +44,31 @@ jobs:
                 key: deps-node-modules-${{ hashFiles('14-artifacts/react-app/package-lock.json') }}
 
             - name: Install dependencies
+              if: steps.cache.outputs.cache-hit != 'true'
               run: npm ci
+            
+            - name: Unit tests
+              run: npm run test
+            
+            - name: Build code
+              run: npm run build
+
+            - name: Upload build files
+              uses: actions/upload-artifact@v4
+              with:
+                name: app
+                path: ${{ env.Working-directory }}/build
 
     
     deploy: 
         runs-on: ubuntu-latest
 
         steps:
-            - name: Echo test
-              run: echo "Echo command is a fun way of print stin to stdout"
+            - name: Download build artifacts
+              uses: actions/download-artifact@v4
+              with:
+                name: app
+                path: build
+            
+            - name: Show folder structure
+              run: ls -R 
