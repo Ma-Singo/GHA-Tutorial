@@ -48,7 +48,7 @@ jobs:
                 key: ${{ steps.cache-key.outputs.CACHE_KEY }}
             # 2. Install dependencies
             - name: Install dependencies
-              if: ${{ steps.cache.outputs.cache-hit != 'true' }}
+              if: ${{ steps.cache-key.outputs.cache-hit != 'true' }}
               run: npm ci
 
 
