@@ -7,7 +7,7 @@ jobs:
     backwards-compatibility:
         name: ${{ matrix.os }}-${{  matrix.node-version }}
         strategy:
-            fail-fast: false
+            fail-fast: true
             matrix:
                 node-version: [18.x, 20.x, 21.x]
                 os:
@@ -36,3 +36,14 @@ jobs:
               run: echo "Running tests on OS ${{ matrix.os }} with Node version ${{ matrix.node-version }}"
 
             
+    include-example:
+        name: ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}
+        runs-on: ubuntu-latest
+        strategy:
+            matrix:
+                color: [red, green]
+                shape: [circle, square]
+                size: [small, large]
+                include:
+                    - color: red
+                      shape: triangle
