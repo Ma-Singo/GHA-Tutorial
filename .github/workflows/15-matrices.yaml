@@ -46,4 +46,8 @@ jobs:
                 size: [small, large]
                 include:
                     - color: red
+
                       shape: triangle
+        steps: 
+            - name: Echo hello
+              run: echo "Hello World!"
