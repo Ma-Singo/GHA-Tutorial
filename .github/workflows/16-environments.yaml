@@ -23,5 +23,5 @@ jobs:
         needs: ec2-test
         environment: prod
         steps:
-            - name: Staging 
+            - name: Production
               run: echo "Deploying to prod"
