@@ -22,6 +22,8 @@ jobs:
         runs-on: ubuntu-latest
         needs: ec2-test
         environment: prod
+        env:
+            my-env-value: ${{ vars.MY_ENV_VALUE || 'default value' }}
         steps:
             - name: Production
               run: echo "Deploying to prod"
