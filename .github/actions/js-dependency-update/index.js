@@ -23,12 +23,12 @@ async function run() {
         return;
     }
 
-     if (validateBranchName({ branchName: targetBranch })) {
+    if (validateBranchName({ branchName: targetBranch })) {
         core.setFailed('Invalid target-branch name. Branch names should include only characters, numbers, hyphens, underscores, and forward slashes.');
         return;
     }
 
-     if (validateDirectoryName({ dirName: workingDir })) {
+    if (validateDirectoryName({ dirName: workingDir })) {
         core.setFailed('Invalid working directory name. Directory names should include only characters, numbers, hyphens, underscores, and forward slashes.');
         return;
     }
@@ -99,5 +99,6 @@ async function run() {
 
     */
 }
+
 
 run();
