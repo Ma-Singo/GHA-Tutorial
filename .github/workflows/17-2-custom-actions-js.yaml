@@ -1,5 +1,5 @@
 name: 17 - 2 - Custom Actions - JS
-run-name: 17 - 2 - Custom Actions - JS 
+run-name: 17 - 2 - Custom Actions - JS  ||  BB - ${{ inputs.base-branch }} TB - ${{ inputs.target-branch }} WD - ${{ inputs.working-dir }}
 
 
 on:
@@ -7,20 +7,13 @@ on:
         inputs:
             base-branch:
                 type: string
-                description: The brancch used as the base for the dependency update Checks
                 default: main
             target-branch:
                 type: string
-                description: The branch from which the PR is created
                 default: update-dependencies
-            working-directory:
-                description: The working directory of the project to check for dependency update
-            gh-token:
-                description: Authentication token with repository access. Must have write accessto contents and pull-requests
-            debug:
-                description: Whether the output debug messages to the console
-                type: boolean
-                default: false
+            working-dir:
+                type: string
+                default: 17-custom-actions/react-app
 
 jobs:
     dependency-update: 
@@ -29,4 +22,9 @@ jobs:
             - uses: actions/checkout@v4
             - name: Check fo dependency updates
               uses: ./.github/actions/js-dependency-update
+              with:
+                base-branch: ${{ inputs.base-branch }}
+                target-branch: ${{ inputs.target-branch }}
+                working-directory: ${{ inputs.working-dir }}
+
           
