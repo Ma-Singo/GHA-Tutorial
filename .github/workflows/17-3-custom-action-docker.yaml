@@ -8,7 +8,7 @@ on:
             url:
                 type: string
                 default: 'https://www.google.com'
-            max-trials:
+            max_trials:
                 type: string
             delay:
                 type: string
@@ -25,5 +25,6 @@ jobs:
                 url: ${{ inputs.url }}
                 max-trials: ${{ inputs.max-trials }}
                 delay: ${{ inputs.delay }}
+
 
           
