@@ -8,14 +8,7 @@ on:
             url:
                 type: string
                 default: 'https://www.google.com'
-<<<<<<< HEAD
-            max_trials:
-                type: string
-            delay:
-                type: string
-=======
    
->>>>>>> 68a8747 (fix(17-3-custom-actions): fixing and uploading dockerfile)
 
 
 jobs:
@@ -27,14 +20,5 @@ jobs:
               uses: ./.github/actions/docker-ping-url
               with:
                 url: ${{ inputs.url }}
-<<<<<<< HEAD
-                #max_trials: ${{ inputs.max_trials }}
-                #delay: ${{ inputs.delay }}
-
-
           
-
-=======
-          
->>>>>>> 68a8747 (fix(17-3-custom-actions): fixing and uploading dockerfile)
 
