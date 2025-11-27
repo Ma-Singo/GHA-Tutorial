@@ -1,0 +1,29 @@
+name: 17 - 3 - Custom Actions - Docker
+run-name: 17 - 3 - Custom Actions - Docker  ||  URL - ${{ inputs.url }} 
+
+
+on:
+    workflow_dispatch:
+        inputs:
+            url:
+                type: string
+                default: 'https://www.google.com'
+            max-trials:
+                type: string
+            delay:
+                type: string
+
+
+jobs:
+    docker-ping: 
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: Check for dependency updates
+              uses: ./.github/actions/docker-ping-url
+              with:
+                url: ${{ inputs.url }}
+                max-trials: ${{ inputs.max-trials }}
+                delay: ${{ inputs.delay }}
+
+          
